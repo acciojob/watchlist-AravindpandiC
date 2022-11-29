@@ -24,19 +24,20 @@ public class MovieRepository {
         for(Movie movie:movies) {
             if(movie.getName().equals(name)) return movie;
         }
-        return null;
+        return new Movie();
     }
 
     public Director getDirectorByName(String name) {
         for(Director director:directors) {
             if(director.getName().equals(name)) return director;
         }
-        return null;
+        return new Director();
     }
 
     public void addMovieDirectorPair(String movieName, String directorName){
         Director director = getDirectorByName(directorName);
         Movie movie = getMovieByName(movieName);
+        if(director==null || movie==null) return;
         if(!directorMovies.containsKey(director)) directorMovies.put(director,new ArrayList<>());
         directorMovies.get(director).add(movie);
     }
