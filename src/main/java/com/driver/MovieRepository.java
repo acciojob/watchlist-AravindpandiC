@@ -47,6 +47,7 @@ public class MovieRepository {
     public List<String> getMoviesByDirectorName(String directorName) {
         List<String> movieList = new ArrayList<>();
         Director director = getDirectorByName(directorName);
+
         for(Movie movie:directorMovies.get(director)) {
             movieList.add(movie.getName());
         }
@@ -61,16 +62,20 @@ public class MovieRepository {
 
     public void deleteDirectorByName(String directorName) {
         Director director = getDirectorByName(directorName);
-        for(Movie movie : directorMovies.get(director)) {
-            movies.remove(movie);
+        if(directorMovies.containsKey(director)) {
+            for (Movie movie : directorMovies.get(director)) {
+                movies.remove(movie);
+            }
+            directorMovies.remove(director);
+            directors.remove(director);
         }
-        directorMovies.remove(director);
-        directors.remove(director);
+
     }
 
     public void deleteAllDirectors(){
         for(Director director:directors) {
             deleteDirectorByName(director.getName());
         }
+        directors.clear();
     }
 }
