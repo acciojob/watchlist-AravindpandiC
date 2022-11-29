@@ -47,6 +47,5 @@ public class MovieService {
 
     public void deleteAllDirectors() {
         movieRepository.deleteAllDirectors();
-        return;
     }
 }

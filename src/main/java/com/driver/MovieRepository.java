@@ -69,6 +69,7 @@ public class MovieRepository {
             directorMovies.remove(director);
             directors.remove(director);
         }
+        else directors.remove(director);
 
     }
 
