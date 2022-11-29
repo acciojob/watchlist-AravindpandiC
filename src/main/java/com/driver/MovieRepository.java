@@ -3,10 +3,7 @@ package com.driver;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Component
 @Repository
@@ -47,7 +44,7 @@ public class MovieRepository {
     public List<String> getMoviesByDirectorName(String directorName) {
         List<String> movieList = new ArrayList<>();
         Director director = getDirectorByName(directorName);
-        if(director == null || !directorMovies.containsKey(director)) return null;
+        if(director == null || !directorMovies.containsKey(director)) return movieList;
         for(Movie movie:directorMovies.get(director)) {
             movieList.add(movie.getName());
         }
@@ -60,9 +57,9 @@ public class MovieRepository {
         return movieList;
     }
 
-    public void deleteDirectorByName(String directorName) {
+    public void deleteDirectorByName(String directorName) throws ConcurrentModificationException {
         Director director = getDirectorByName(directorName);
-        if(directorMovies.containsKey(director)) {
+        if(directorMovies.containsKey(director) && director!=null) {
             for (Movie movie : directorMovies.get(director)) {
                 movies.remove(movie);
             }
