@@ -72,6 +72,6 @@ public class MovieRepository {
         for(Director director:directors) {
             deleteDirectorByName(director.getName());
         }
-        directors.clear();
+
     }
 }
