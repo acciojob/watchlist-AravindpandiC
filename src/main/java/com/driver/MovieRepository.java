@@ -62,8 +62,8 @@ public class MovieRepository {
 
             Director director = getDirectorByName(directorName);
             if (directorMovies.containsKey(director) && director != null) {
-                List<Movie> listmovie = directorMovies.get(director);
-                for(Movie movie:listmovie) movies.remove(movie);
+                List<Movie> movieList = directorMovies.get(director);
+                for(Movie movie:movieList) movies.remove(movie);
                 directorMovies.remove(director);
             }
             directors.remove(director);
@@ -71,8 +71,11 @@ public class MovieRepository {
 
     public void deleteAllDirectors() throws ConcurrentModificationException {
         for(Director director:directors) {
-            deleteDirectorByName(director.getName());
+            if(directorMovies.containsKey(director)) {
+                for(Movie movie:directorMovies.get(director)) movies.remove(movie);
+            }
         }
-
+        directors.clear();
+        directorMovies.clear();
     }
 }

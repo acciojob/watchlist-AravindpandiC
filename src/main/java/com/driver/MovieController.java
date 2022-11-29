@@ -62,9 +62,9 @@ public class MovieController {
         return new ResponseEntity(HttpStatus.ACCEPTED);
     }
 
-//    @DeleteMapping("/movies/delete-all-directors")
-//    public ResponseEntity deleteAllDirectors() {
-//        movieService.deleteAllDirectors();
-//        return new ResponseEntity(HttpStatus.ACCEPTED);
-//    }
+    @DeleteMapping("/movies/delete-all-directors")
+    public ResponseEntity deleteAllDirectors() {
+        movieService.deleteAllDirectors();
+        return new ResponseEntity(HttpStatus.ACCEPTED);
+    }
 }
