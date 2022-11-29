@@ -56,12 +56,12 @@ public class MovieController {
         return new ResponseEntity(movieService.findAllMovies(),HttpStatus.ACCEPTED);
     }
 
-//    @DeleteMapping("/movies/delete-director-by-name")
-//    public ResponseEntity deleteDirectorByName(@RequestParam("name") String name) {
-//        movieService.deleteDirectorByName(name);
-//        return new ResponseEntity(HttpStatus.ACCEPTED);
-//    }
-//
+    @DeleteMapping("/movies/delete-director-by-name")
+    public ResponseEntity deleteDirectorByName(@RequestParam("name") String name) {
+        movieService.deleteDirectorByName(name);
+        return new ResponseEntity(HttpStatus.ACCEPTED);
+    }
+
 //    @DeleteMapping("/movies/delete-all-directors")
 //    public ResponseEntity deleteAllDirectors() {
 //        movieService.deleteAllDirectors();
